@@ -21,6 +21,9 @@ const App = () => {
 
   // console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
 
+  // console.log("answers", answers);
+  console.log("questions", questions);
+
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
@@ -28,6 +31,7 @@ const App = () => {
       TOTAL_QUESTIONS,
       Difficulty.EASY
     );
+    console.log("newQuestions", newQuestions);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -49,14 +53,16 @@ const App = () => {
       {!gameOver ? <p className="score">Score:</p> : null}
 
       {loading && <p>Loading Questions...</p>}
-      {/* <QuestionCard
-        questionNumber={number + 1}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number] : undefined}
-        callback={checkAnswer}
-      /> */}
+      {!loading && !gameOver && (
+        <QuestionCard
+          questionNumber={number + 1}
+          totalQuestions={TOTAL_QUESTIONS}
+          question={questions[number].question}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined}
+          callback={checkAnswer}
+        />
+      )}
       <button className="next" onClick={nextQuestion}>
         Next
       </button>
