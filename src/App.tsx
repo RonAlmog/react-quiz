@@ -39,7 +39,24 @@ const App = () => {
     setLoading(false);
   };
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!gameOver) {
+      // users answer
+      const answer = e.currentTarget.value;
+      // check answer agains the correct
+      const correct = questions[number].correct_answer === answer;
+      // add score if answer is correct
+      if (correct) setScore((prev) => prev + 1);
+      // save answer in the array
+      const answerObject = {
+        question: questions[number].question,
+        answer,
+        correct,
+        correctAnswer: questions[number].correct_answer,
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
+    }
+  };
   const nextQuestion = () => {};
   return (
     <div className="App">
