@@ -27,6 +27,5 @@ export const fetchQuizQuestions = async (
       ...question.incorrect_answers,
       question.correct_answer,
     ]),
-    // answers: [...question.incorrect_answers, question.correct_answer],
   }));
 };
