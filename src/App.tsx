@@ -3,7 +3,7 @@ import QuestionCard from "./components/QuestionCard";
 import { fetchQuizQuestions, Difficulty, QuestionState } from "./Api";
 import { shuffleArray } from "./Utils";
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -57,7 +57,15 @@ const App = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
-  const nextQuestion = () => {};
+  const nextQuestion = () => {
+    // move on to the next q
+    const nextQuestion = number + 1;
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
+  };
   return (
     <div className="App">
       <h1>React Quizzz!</h1>
